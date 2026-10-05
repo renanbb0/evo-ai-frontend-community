@@ -63,7 +63,8 @@ export function AgentChatMessage({ message }: AgentChatMessageProps) {
 
       let resultText = '';
       if (status === 'error') {
-        resultText = `Error: ${(response.error_message || 'Unknown error') as string}`;
+        const error = response.error_message || response.message || response.error || 'Unknown error';
+        resultText = `Error: ${typeof error === 'string' ? error : JSON.stringify(error, null, 2)}`;
       } else {
         resultText = `Result:\n${JSON.stringify(response, null, 2)}`;
       }

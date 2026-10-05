@@ -35,6 +35,11 @@ export function AgentChatArea({ agent }: AgentChatAreaProps) {
 
   return (
     <div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden">
+      <p className="border-b px-4 py-2 text-xs text-muted-foreground">
+        {t('chat.crmContextNotice', {
+          defaultValue: 'Este chat testa respostas e transferências entre agentes. Etiquetas, contato, pipeline, notas privadas e transferência humana precisam de uma conversa do CRM vinculada.',
+        })}
+      </p>
       <div
         ref={messagesContainerRef}
         className="flex-1 overflow-y-auto overflow-x-hidden min-h-0"

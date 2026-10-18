@@ -21,7 +21,7 @@ const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSe
 
   const hasResultsData = data.trends.response_time_daily.length > 0;
   const responseTimeCardDescription = hasResultsData
-    ? tx('dashboard.charts.sessionDescription', 'Média diária das sessões por dia')
+    ? tx('dashboard.charts.sessionDescription', 'Média diária do tempo de resposta (segundos)')
     : tx('dashboard.charts.emptyState', 'Sem dados no período selecionado');
 
   const topChannel = data.channels[0];
@@ -54,7 +54,7 @@ const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSe
 
         <div data-tour="dashboard-trends-response" className="h-full">
           <BarChartCard
-            title={t('dashboard.charts.sessionDuration') || 'Tempo de 1ª resposta por dia'}
+            title={t('dashboard.charts.sessionDuration') || 'Tempo médio de resposta por dia'}
             description={responseTimeCardDescription}
             data={data.trends.response_time_daily}
             icon={BarChart3}

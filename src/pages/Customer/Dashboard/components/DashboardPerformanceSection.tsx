@@ -251,7 +251,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
                       </div>
                       <div className="text-right min-w-[120px]">
                         <Badge variant="secondary" className="mb-1">{agent.availability_status}</Badge>
-                        <div className="text-sm text-muted-foreground">1ª resp: {formatSeconds(agent.avg_first_response_time_seconds)}</div>
+                        <div className="text-sm text-muted-foreground">Resp. média: {formatSeconds(agent.avg_response_time_seconds)}</div>
                       </div>
                     </div>
                   ))}

@@ -25,8 +25,8 @@
       "content": "Total de mensagens recebidas no período selecionado. Utilize os filtros para comparar diferentes intervalos de tempo."
     },
     "step3": {
-      "title": "Tempo Médio de Resposta",
-      "content": "Monitoriza a velocidade do seu atendimento. Quanto menor for, melhor a experiência do cliente."
+      "title": "Tempo de resposta: humano e IA",
+      "content": "Média do tempo entre a última mensagem do cliente e a próxima resposta pública, separada por quem respondeu: humano ou IA. Mensagens consecutivas do atendente sem nova mensagem do cliente não geram outra medição. Sem base indica ausência de medições."
     },
     "step4": {
       "title": "CSAT Médio",
@@ -38,7 +38,7 @@
     },
     "step6": {
       "title": "IA vs Humano",
-      "content": "Distribuição de respostas entre IA e agentes humanos. Ajuda a calibrar a automatização da sua equipa."
+      "content": "Quantidade e participação nas mensagens enviadas por IA e agentes humanos no período selecionado. Use esta comparação para acompanhar a distribuição do atendimento."
     },
     "step7": {
       "title": "Conversas Ativas Agora",
@@ -53,8 +53,8 @@
       "content": "Tendência diária de conversas no período selecionado. Identifica picos de volume e os dias mais movimentados."
     },
     "step10": {
-      "title": "Tempo de 1ª Resposta por Dia",
-      "content": "Evolução diária do tempo médio de primeira resposta. Monitoriza se a equipa está a melhorar ou a piorar a velocidade de atendimento."
+      "title": "Tempo médio de resposta por dia",
+      "content": "Média diária do tempo entre a última mensagem do cliente e a próxima resposta, incluindo IA e atendentes humanos."
     },
     "step11": {
       "title": "Participação por Canal",

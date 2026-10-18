@@ -47,7 +47,7 @@ const DashboardMetricCard = ({
       <CardHeader className="flex flex-row items-start justify-between pb-2 gap-3">
         <div className="min-w-0">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-            <span className="truncate">{title}</span>
+            <span className="break-words">{title}</span>
             {tooltip && <TooltipInfo title={tooltip.title} content={tooltip.content} />}
           </CardTitle>
           {status && (

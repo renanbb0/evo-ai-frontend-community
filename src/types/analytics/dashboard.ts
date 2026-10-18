@@ -21,7 +21,8 @@ export interface CustomerDashboardStats {
   unassigned_conversations: number;
   incoming_messages_count: number;
   outgoing_messages_count: number;
-  avg_first_response_time_seconds: number;
+  avg_first_response_time_seconds: number | null;
+  avg_response_time_seconds: number | null;
   avg_resolution_time_seconds: number;
 }
 
@@ -70,7 +71,8 @@ export interface CustomerDashboardAgent {
   name: string;
   conversations: number;
   percentage: number;
-  avg_first_response_time_seconds: number;
+  avg_first_response_time_seconds: number | null;
+  avg_response_time_seconds: number | null;
   availability_status: string;
 }
 
@@ -114,8 +116,10 @@ export interface CustomerDashboardAiVsHuman {
   human_messages_share: number;
   ai_conversations_count: number;
   human_conversations_count: number;
-  avg_first_response_time_ai_seconds: number;
-  avg_first_response_time_human_seconds: number;
+  avg_first_response_time_ai_seconds: number | null;
+  avg_first_response_time_human_seconds: number | null;
+  avg_response_time_ai_seconds: number | null;
+  avg_response_time_human_seconds: number | null;
 }
 
 export interface CustomerDashboardResponse {

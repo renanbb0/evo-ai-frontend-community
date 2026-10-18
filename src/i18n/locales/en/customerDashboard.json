@@ -26,13 +26,16 @@
       "followUpsPending": "Pending Follow-ups",
       "sent": "sent",
       "avgResponseTime": "Avg. Response Time",
+      "humanResponseTime": "Human response average",
+      "aiResponseTime": "AI response average",
       "improvement": "improvement",
       "recoveredValue": "Recovered Value",
       "incomingMessages": "Incoming messages",
       "realData": "Real data",
       "leads": "leads",
       "activeConversations": "Active conversations now",
-      "unassignedConversations": "Unassigned conversations"
+      "unassignedConversations": "Unassigned conversations",
+      "responseTimeSubtitle": "After the latest customer message"
     },
     "csat": {
       "avg": "Avg. CSAT",
@@ -104,8 +107,8 @@
       "conversionDescription": "Conversion rate by type",
       "channelShare": "Channel share",
       "channelShareDescription": "Percentage distribution of conversations by channel",
-      "sessionDuration": "First response time per day",
-      "sessionDescription": "Daily average first response time (seconds)",
+      "sessionDuration": "Average response time per day",
+      "sessionDescription": "Daily average from the latest customer message to the next reply (seconds)",
       "heatmapTitle": "Operations heatmap",
       "heatmapDescription": "Conversation volume by date and hour",
       "heatmapPeakSlot": "Peak slot",

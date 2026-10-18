@@ -26,13 +26,16 @@
       "followUpsPending": "Seguimientos Pendientes",
       "sent": "enviados",
       "avgResponseTime": "Tiempo Medio de Respuesta",
+      "humanResponseTime": "Respuesta media humana",
+      "aiResponseTime": "Respuesta media IA",
       "improvement": "mejora",
       "recoveredValue": "Valor Recuperado",
       "incomingMessages": "Mensajes entrantes",
       "realData": "Datos reales",
       "leads": "leads",
       "activeConversations": "Conversaciones activas ahora",
-      "unassignedConversations": "Conversaciones sin responsable"
+      "unassignedConversations": "Conversaciones sin responsable",
+      "responseTimeSubtitle": "Tras el último mensaje del cliente"
     },
     "csat": {
       "avg": "CSAT promedio",
@@ -104,8 +107,8 @@
       "conversionDescription": "Tasa de conversión por tipo",
       "channelShare": "Participación por canal",
       "channelShareDescription": "Distribución porcentual de conversaciones por canal",
-      "sessionDuration": "Tiempo de 1ª respuesta por día",
-      "sessionDescription": "Promedio diario del first response time (segundos)",
+      "sessionDuration": "Tiempo medio de respuesta por día",
+      "sessionDescription": "Promedio diario desde el último mensaje del cliente hasta la próxima respuesta (segundos)",
       "heatmapTitle": "Mapa de calor de la operación",
       "heatmapDescription": "Volumen de conversaciones por fecha y hora",
       "heatmapPeakSlot": "Pico semanal",

@@ -1,4 +1,4 @@
-import { Clock, MessageSquare, Bot, CheckCircle2, AlertTriangle, UserX, Users } from 'lucide-react';
+import { MessageSquare, Bot, CheckCircle2, AlertTriangle, UserX, Users } from 'lucide-react';
 import { Badge, Card, CardContent, CardHeader, CardTitle } from '@evoapi/design-system';
 import type { CustomerDashboardResponse } from '@/types/analytics/dashboard';
 import DashboardMetricCard from './DashboardMetricCard';
@@ -18,11 +18,16 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
     return value === key ? fallback : value;
   };
 
-  const responseStatus = data.stats.avg_first_response_time_seconds <= 60
-    ? { label: tx('dashboard.status.good', 'Dentro do SLA'), tone: 'good' as const }
-    : data.stats.avg_first_response_time_seconds <= 180
-      ? { label: tx('dashboard.status.warning', 'Atenção'), tone: 'warning' as const }
-      : { label: tx('dashboard.status.critical', 'Crítico'), tone: 'critical' as const };
+  const responseStatus = (seconds: number | null) => seconds == null
+    ? { label: tx('dashboard.status.noSample', 'Sem base'), tone: 'neutral' as const }
+    : seconds <= 60
+      ? { label: tx('dashboard.status.good', 'Dentro do SLA'), tone: 'good' as const }
+      : seconds <= 180
+        ? { label: tx('dashboard.status.warning', 'Atenção'), tone: 'warning' as const }
+        : { label: tx('dashboard.status.critical', 'Crítico'), tone: 'critical' as const };
+  const humanResponseTitle = tx('dashboard.stats.humanResponseTime', 'Resposta média humana');
+  const aiResponseTitle = tx('dashboard.stats.aiResponseTime', 'Resposta média IA');
+  const responseSubtitle = tx('dashboard.stats.responseTimeSubtitle', 'Após a última mensagem do cliente');
 
   const csatStatus = data.csat.total_responses === 0
     ? { label: tx('dashboard.status.noSample', 'Sem base'), tone: 'neutral' as const }
@@ -54,7 +59,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
         <div data-tour="dashboard-messages-card" className="h-full">
           <DashboardMetricCard
             title={t('dashboard.stats.incomingMessages') || 'Mensagens recebidas'}
@@ -71,16 +76,29 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
           />
         </div>
 
-        <div data-tour="dashboard-response-time-card" className="h-full">
+        <div data-tour="dashboard-response-time-card" className="h-full" role="group" aria-label={humanResponseTitle}>
           <DashboardMetricCard
-            title={t('dashboard.stats.avgResponseTime')}
-            value={formatSeconds(data.stats.avg_first_response_time_seconds)}
-            subtitle={t('dashboard.stats.realData') || 'Dados reais'}
-            icon={Clock}
-            accentClassName="bg-emerald-500/20 text-emerald-400"
+            title={humanResponseTitle}
+            value={formatSeconds(data.ai_vs_human.avg_response_time_human_seconds)}
+            subtitle={responseSubtitle}
+            icon={Users}
+            accentClassName="bg-sky-500/20 text-sky-400"
             importance="primary"
-            status={responseStatus}
-            tooltip={{ title: tTours('dashboard.step3.title'), content: tTours('dashboard.step3.content') }}
+            status={responseStatus(data.ai_vs_human.avg_response_time_human_seconds)}
+            tooltip={{ title: humanResponseTitle, content: tTours('dashboard.step3.content') }}
+          />
+        </div>
+
+        <div data-tour="dashboard-ai-response-time-card" className="h-full" role="group" aria-label={aiResponseTitle}>
+          <DashboardMetricCard
+            title={aiResponseTitle}
+            value={formatSeconds(data.ai_vs_human.avg_response_time_ai_seconds)}
+            subtitle={responseSubtitle}
+            icon={Bot}
+            accentClassName="bg-indigo-500/20 text-indigo-400"
+            importance="primary"
+            status={responseStatus(data.ai_vs_human.avg_response_time_ai_seconds)}
+            tooltip={{ title: aiResponseTitle, content: tTours('dashboard.step3.content') }}
           />
         </div>
 
@@ -155,27 +173,6 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-              <div className="rounded-md border p-3 bg-muted/10">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Bot className="h-4 w-4" />
-                  {tx('dashboard.aiVsHuman.aiFirstResponse', '1ª resposta média IA')}
-                </div>
-                <div className="text-xl font-semibold mt-1">
-                  {formatSeconds(data.ai_vs_human.avg_first_response_time_ai_seconds)}
-                </div>
-              </div>
-
-              <div className="rounded-md border p-3 bg-muted/10">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Users className="h-4 w-4" />
-                  {tx('dashboard.aiVsHuman.humanFirstResponse', '1ª resposta média humana')}
-                </div>
-                <div className="text-xl font-semibold mt-1">
-                  {formatSeconds(data.ai_vs_human.avg_first_response_time_human_seconds)}
-                </div>
-              </div>
-            </div>
           </CardContent>
         </Card>
 

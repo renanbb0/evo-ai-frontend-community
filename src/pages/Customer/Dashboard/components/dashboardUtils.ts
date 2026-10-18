@@ -5,11 +5,13 @@ export const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-export const formatSeconds = (value: number) => {
+export const formatSeconds = (value: number | null) => {
+  if (value == null || !Number.isFinite(value)) return '—';
   if (!value || value <= 0) return '0s';
-  if (value < 60) return `${Math.round(value)}s`;
+  const rounded = Math.round(value);
+  if (rounded < 60) return `${rounded}s`;
 
-  const minutes = Math.floor(value / 60);
-  const seconds = Math.round(value % 60);
+  const minutes = Math.floor(rounded / 60);
+  const seconds = rounded % 60;
   return `${minutes}min ${seconds}s`;
 };
